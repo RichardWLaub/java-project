@@ -6,6 +6,14 @@ pipeline {
   }
 
   stages {
+    stage('Say Hello') {
+      agent any
+      
+      steps {
+        sayHello 'Awesome Student!'
+      }
+
+    }
     stage('Unit Tests') {
       agent {
         label 'apache'
@@ -42,7 +50,7 @@ pipeline {
         label 'CentOS'
       }
       steps {
-        sh "wget http://54.144.44.175/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
+        sh "wget http://34.203.201.98/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
         sh "java -jar rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar 3 4"
       }
     }
@@ -51,7 +59,7 @@ pipeline {
         docker 'openjdk:8u121-jre'
       }
       steps {
-        sh "wget http://54.144.44.175/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
+        sh "wget http://34.203.201.98/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
         sh "java -jar rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar 3 4"
       }
     }
